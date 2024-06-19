@@ -13,4 +13,27 @@ elementoFormulario.addEventListener("submit", function(envent){
     const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao");
     const inputValor = elementoFormulario.querySelector("#valor");
     const inputData = elementoFormulario.querySelector("#data");
+
+    let tipoTransacao = inputTipoTransacao.value;
+    let valor = inputValor.value;
+    let data = inputData.value;
+
+    if (tipoTransacao == "Deposito"){
+        saldo += valor;
+    }else if (tipoTransacao == "Transeferncia" || tipoTransacao == "Pagamento de Boleto"){
+        saldo -= valor;
+    }else {
+        alert("Tipo de Transação é invalido");
+        return;
+    }
+
+elementoSaldo.textContent = saldo;
+
+    const novaTransacao = {
+        tipoTransacao: tipoTransacao,
+        valor: valor,
+        data: data
+    }
+    console.log(novaTransacao);
+    elementoFormulario.reset();
 });
